@@ -5,9 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-//import view.Controller;
+//import view.LoginController;
+import java.io.Serializable;
+import java.util.ArrayList;
+import model.User;
 
-public class PhotoAlbum extends Application {
+public class PhotoAlbum extends Application implements Serializable {
+	public ArrayList<User> users;
+	public ArrayList<String> storeFiles;
+	
+	public static final String storeDir = "dat";
+	
+	public PhotoAlbum() { users = new ArrayList<User>(); }
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {                
@@ -16,10 +25,10 @@ public class PhotoAlbum extends Application {
 		
 		AnchorPane root = (AnchorPane)loader.load();
 
-		//Controller controller = loader.getController();
+		//LoginController controller = loader.getController();
 		//controller.start(primaryStage);
 
-		Scene scene = new Scene(root, 400, 600);
+		Scene scene = new Scene(root, 600, 400);
 		primaryStage.setTitle("Photo Album");
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
