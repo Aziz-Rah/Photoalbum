@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public class Photo implements Serializable {
-	private Image image;
+	public Image image;
 	private String caption;
 	ArrayList<Tag> tags;
 	
