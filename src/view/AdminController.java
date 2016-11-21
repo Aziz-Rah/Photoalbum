@@ -1,7 +1,9 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import app.PhotoAlbum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,7 +32,7 @@ public class AdminController {
 	@FXML Button okD;
 	@FXML Text user;
 	
-	private ObservableList<User> obsList = FXCollections.observableArrayList();
+	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	
 	public void back() throws Exception {
 		Stage stage = (Stage)back.getScene().getWindow();
@@ -74,7 +76,7 @@ public class AdminController {
 	
 	public void ok(){
 		Stage stage = (Stage)ok.getScene().getWindow();
-		obsList.add(new User(field.getText()));
+		users.add(new User(field.getText().toLowerCase()));
 		stage.close();
 		
 	}
@@ -87,9 +89,9 @@ public class AdminController {
 	public void okD(){
 	
 		Stage stage = (Stage)okD.getScene().getWindow();
-		for (int i = 0; obsList.get(i) != null; i++){
-			if (obsList.get(i).toString().equals(user.getText()))
-				obsList.remove(i);
+		for (int i = 0; i < users.size(); i++){
+			if (users.get(i).toString().equals(user.getText()))
+				users.remove(i);
 		}
 		stage.close();
 	}
