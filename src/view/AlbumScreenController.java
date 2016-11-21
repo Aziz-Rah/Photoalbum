@@ -40,9 +40,9 @@ public class AlbumScreenController {
 	@FXML ImageView img1;
 	@FXML ListView<Album> list = new ListView<Album>();
 	//How to get the album that is passed to this window
-	private Album album;	
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
+	//comment
 	
 	public void start(Stage stage){
 
