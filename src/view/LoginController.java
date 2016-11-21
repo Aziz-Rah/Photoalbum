@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import app.PhotoAlbum;
+import model.User;
+import java.util.ArrayList;
 
 public class LoginController {
 	@FXML Button login;
@@ -15,8 +18,10 @@ public class LoginController {
 	@FXML TextField username;
 	@FXML Label errormsg;
 	
+	ArrayList<User> users = PhotoAlbum.getInstance().users;
+	
 	public void login() throws Exception {
-		String user = username.getText();
+		String user = username.getText().toLowerCase();
 		Stage stage;
 		Parent root;
 		if(user.equals("admin")) {
@@ -26,8 +31,18 @@ public class LoginController {
 			stage.setScene(scene);
 			stage.show();
 		} else {
-			// if user -> go to user screen
-			// else --> enable error message
+			boolean isUser = false;
+			
+			for(int i = 0; i < users.size(); i++) {
+				if(username.equals(users.get(i).toString()))
+					isUser = true;
+			}
+			
+			if(isUser) {
+				// go to user screen
+			} else {
+				errormsg.setOpacity(1);
+			}
 		}
 	}
 	

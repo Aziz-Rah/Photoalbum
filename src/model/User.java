@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class User implements Serializable {
 	String name;
 	ArrayList<Album> albums;
+	Album selectedAlbum;
 	
 	public User(String name) {
 		this.name = name;
@@ -24,6 +25,14 @@ public class User implements Serializable {
 		}
 		
 		return false;
+	}
+	
+	public void selectAlbum(int index) {
+		selectedAlbum =  albums.get(index);
+	}
+	
+	public Album getSelectedAlbum() {
+		return selectedAlbum;
 	}
 	
 	public String toString() {

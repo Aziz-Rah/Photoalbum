@@ -5,18 +5,42 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-//import view.LoginController;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import model.User;
 
 public class PhotoAlbum extends Application implements Serializable {
 	public ArrayList<User> users;
-	public ArrayList<String> storeFiles;
-	
+	//public ArrayList<String> storeFiles;
 	public static final String storeDir = "dat";
+	public static final String storeFile = "users.dat";
 	
-	public PhotoAlbum() { users = new ArrayList<User>(); }
+	static private PhotoAlbum instance = new PhotoAlbum();
+	static public PhotoAlbum getInstance() { return instance; }
+	
+	public PhotoAlbum() { 
+		users = new ArrayList<User>();
+		//storeFiles = new ArrayList<String>();
+	}
+	
+	public static void writeApp(PhotoAlbum app) throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(
+				new FileOutputStream(storeDir + File.separator + storeFile));
+		oos.writeObject(app);
+	}
+	
+	public static PhotoAlbum readApp() throws IOException, ClassNotFoundException {
+		ObjectInputStream ois = new ObjectInputStream(
+				new FileInputStream(storeDir + File.separator + storeFile));
+		PhotoAlbum app = (PhotoAlbum)ois.readObject();
+		return app;
+	}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {                
@@ -25,9 +49,6 @@ public class PhotoAlbum extends Application implements Serializable {
 		
 		AnchorPane root = (AnchorPane)loader.load();
 
-		//LoginController controller = loader.getController();
-		//controller.start(primaryStage);
-
 		Scene scene = new Scene(root, 600, 400);
 		primaryStage.setTitle("Photo Album");
 		primaryStage.setResizable(false);
@@ -35,7 +56,8 @@ public class PhotoAlbum extends Application implements Serializable {
 		primaryStage.show(); 
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		//PhotoAlbum app = PhotoAlbum.readApp();
 		launch(args);
 	}
 }
