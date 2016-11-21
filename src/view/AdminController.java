@@ -93,8 +93,4 @@ public class AdminController {
 		}
 		stage.close();
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> bfea11279b463d34fdf1a5ac5c8b3bb79a1af174

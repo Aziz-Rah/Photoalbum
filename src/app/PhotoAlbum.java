@@ -17,20 +17,13 @@ import model.User;
 
 public class PhotoAlbum extends Application implements Serializable {
 	public ArrayList<User> users;
-<<<<<<< HEAD
-	//public ArrayList<String> storeFiles;
-=======
 	public ArrayList<String> storeFiles;
 	
 	static private PhotoAlbum instance = new PhotoAlbum();
 	static public PhotoAlbum getInstance() { return instance; }
 	
->>>>>>> bfea11279b463d34fdf1a5ac5c8b3bb79a1af174
 	public static final String storeDir = "dat";
 	public static final String storeFile = "users.dat";
-	
-	static private PhotoAlbum instance = new PhotoAlbum();
-	static public PhotoAlbum getInstance() { return instance; }
 	
 	public PhotoAlbum() { 
 		users = new ArrayList<User>();
