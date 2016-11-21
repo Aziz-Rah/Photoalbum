@@ -15,8 +15,8 @@
    <children>
       <Button fx:id="back" onAction="#back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="&lt;" />
       <Button fx:id="quit" onAction="#quit" layoutX="47.0" layoutY="14.0" mnemonicParsing="false" text="Quit" />
-      <Button fx:id="add" layoutX="527.0" layoutY="15.0" mnemonicParsing="false" text="+" />
-      <Button fx:id="delete" layoutX="561.0" layoutY="15.0" mnemonicParsing="false" text="-" />
+      <Button fx:id="add" onAction="#add" layoutX="527.0" layoutY="15.0" mnemonicParsing="false" text="+" />
+      <Button fx:id="delete" onAction="#delete" layoutX="561.0" layoutY="15.0" mnemonicParsing="false" text="-" />
       <Label layoutX="283.0" layoutY="19.0" prefHeight="18.0" prefWidth="50.0" text="USERS">
          <font>
             <Font size="14.0" />

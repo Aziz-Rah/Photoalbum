@@ -14,6 +14,9 @@ public class PhotoAlbum extends Application implements Serializable {
 	public ArrayList<User> users;
 	public ArrayList<String> storeFiles;
 	
+	static private PhotoAlbum instance = new PhotoAlbum();
+	static public PhotoAlbum getInstance() { return instance; }
+	
 	public static final String storeDir = "dat";
 	
 	public PhotoAlbum() { users = new ArrayList<User>(); }
