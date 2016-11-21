@@ -7,9 +7,11 @@ public class User implements Serializable {
 	String name;
 	ArrayList<Album> albums;
 	Album selectedAlbum;
+	boolean currentUser;
 	
 	public User(String name) {
 		this.name = name;
+		currentUser = false;
 	}
 	
 	public boolean addAlbum(Album name) {
@@ -33,6 +35,22 @@ public class User implements Serializable {
 	
 	public Album getSelectedAlbum() {
 		return selectedAlbum;
+	}
+	
+	public ArrayList<Album> getAlbums() {
+		return albums;
+	}
+	
+	public void selectUser() {
+		currentUser = true;
+	}
+	
+	public void deselectUser() {
+		currentUser = false;
+	}
+	
+	public boolean isCurrentUser() {
+		return currentUser;
 	}
 	
 	public String toString() {

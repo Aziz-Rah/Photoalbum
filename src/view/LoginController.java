@@ -34,12 +34,18 @@ public class LoginController {
 			boolean isUser = false;
 			
 			for(int i = 0; i < users.size(); i++) {
-				if(username.equals(users.get(i).toString()))
+				if(username.equals(users.get(i).toString())) {
 					isUser = true;
+					users.get(i).selectUser();
+				}
 			}
 			
 			if(isUser) {
-				// go to user screen
+				stage = (Stage)login.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("/view/User.fxml"));
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
 			} else {
 				errormsg.setOpacity(1);
 			}
