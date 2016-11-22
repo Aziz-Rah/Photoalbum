@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import app.PhotoAlbum;
 import model.Album;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -11,6 +13,7 @@ import model.User;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 public class UserController {
 	@FXML Button create;
@@ -20,10 +23,13 @@ public class UserController {
 	@FXML Button search;
 	@FXML Button logout;
 	@FXML Button quit;
+	@FXML ListView<String> listView;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	User user;
 	ArrayList<Album> albums;
+	
+	ObservableList<String> list = FXCollections.observableArrayList();	
 	
 	public void start(Stage stage) {
 		for(int i = 0; i < users.size(); i++) {
@@ -31,6 +37,15 @@ public class UserController {
 				user = users.get(i);
 		}
 		albums = user.getAlbums();
+		String s;
+		for(int i = 0; i < albums.size(); i++) {
+			// get strings and put them in listview
+			s = albums.get(i).getName() + "\n" + albums.get(i).photos.size() + " Photos";
+			list.add(s);
+		}
+		
+		listView.setItems(list);
+		listView.getSelectionModel().select(0);
 	}
 	
 	public void search() throws Exception {
