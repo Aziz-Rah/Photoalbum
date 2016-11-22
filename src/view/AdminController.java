@@ -45,11 +45,10 @@ public class AdminController {
 		for(int i = 0; i < obsList.size(); i++) {
 			System.out.println("user: " + obsList.get(i));
 		}
-
 		for(int i = 0; i < users.size(); i++) {
 			obsList.add(users.get(i).toString());
 		}
-		
+		users.add(new User("admin"));
 		if(obsList.size() > 0) {
 			listView.setItems(obsList);
 			listView.getSelectionModel().select(0);
@@ -112,7 +111,22 @@ public class AdminController {
 	
 	public void delete() throws IOException{
 		
-		Stage stage;
+		System.out.println(users.get(0).toString());
+		System.out.println(users.get(1).toString());
+		
+		for (int i = 0; i < users.size(); i++){
+			if (obsList.get(i).toString().equals(field2.getText().toLowerCase())){
+
+				users.remove(i);
+				obsList.remove(i);
+				break;
+			}
+		}
+		listView.setItems(obsList);
+		
+	}
+		
+	/*	Stage stage;
 		Parent root;
 		stage = new Stage();
 		root = FXMLLoader.load(getClass().getResource("DeleteUserPopUp.fxml"));
@@ -121,6 +135,8 @@ public class AdminController {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(okD.getScene().getWindow());
         stage.showAndWait();
+		
+		
 	}
 	
 	public void ok(){
@@ -158,5 +174,5 @@ public class AdminController {
 				users.remove(i);
 		}
 		stage.close();
-	}
+	} */
 }
