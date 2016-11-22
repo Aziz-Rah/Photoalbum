@@ -7,28 +7,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.User;
+import model.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class SearchController {
 	@FXML Button createalbum;
 	@FXML Button logout;
 	@FXML Button quit;
+	@FXML TextField fieldA;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	
 	public void create() throws Exception {
-		Stage stage;
-		Parent root;
-		stage = new Stage();
-		root = FXMLLoader.load(getClass().getResource("CreateAlbumPopUp.fxml"));
-		stage.setScene(new Scene(root));
-		stage.setTitle("Create Album");
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.initOwner(createalbum.getScene().getWindow());
-        stage.showAndWait();
+		
+		String a = fieldA.getText().toLowerCase();
+		for (int i = 0; i < users.size(); i++){
+			if (users.get(i).isCurrentUser()){
+				users.get(i).addAlbum(new Album(a));
+				break;
+			}
+		}		
 	}
 	
 	public void logout() throws Exception {

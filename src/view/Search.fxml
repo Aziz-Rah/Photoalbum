@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="enddate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchController">
+<AnchorPane fx:id="enddate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="SEARCH">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createalbum" onAction="#create" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" text="Create Album" />
-      <Button fx:id="logout" onAction="#logout" layoutX="525.0" layoutY="324.0" mnemonicParsing="false" text="Logout" />
-      <Button fx:id="quit" onAction="#quit"  layoutX="525.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Quit" />
+      <Button fx:id="createalbum" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" onAction="#create" text="Create Album" />
+      <Button fx:id="logout" layoutX="525.0" layoutY="324.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="quit" layoutX="525.0" layoutY="359.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
       <Label layoutX="17.0" layoutY="39.0" text="Date Range">
          <font>
             <Font size="14.0" />
@@ -41,5 +41,6 @@
          </content>
       </ScrollPane>
       <TextField fx:id="tagvalue" layoutX="312.0" layoutY="87.0" prefHeight="27.0" prefWidth="167.0" promptText="&lt;value&gt;" />
+      <TextField fx:id="fieldA" layoutX="247.0" layoutY="12.0" prefHeight="31.0" prefWidth="232.0" />
    </children>
 </AnchorPane>
