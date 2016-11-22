@@ -24,6 +24,7 @@ public class AdminController {
 	@FXML Button quit;
 	@FXML Button add;
 	@FXML Button delete;
+	@FXML TextField field2;
 	
 	//Add User Pop-Up
 	@FXML Button ok;
@@ -91,7 +92,13 @@ public class AdminController {
 	
 	public void add() throws IOException{
 		
-		Stage stage;
+		String s = field2.getText().toLowerCase();
+		users.add(new User(s));
+		obsList.add(field2.getText().toLowerCase());
+		listView.setItems(obsList);
+		
+		
+		/*Stage stage;
 		Parent root;
 		stage = new Stage();
 		root = FXMLLoader.load(getClass().getResource("AddUserPopUp.fxml"));
@@ -100,6 +107,7 @@ public class AdminController {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(add.getScene().getWindow());
         stage.showAndWait();
+        */
 	}
 	
 	public void delete() throws IOException{
@@ -127,11 +135,14 @@ public class AdminController {
 		for(int i = 0; i < obsList.size(); i++) {
 			System.out.println("from list: " + obsList.get(i).toString());
 		}
-		
-		if(obsList.size() > 0)
-			listView.setItems(obsList); // this causes NullPointerException
-			
+
+		if(obsList.size() > 0){
+			if (listView == null)
+				System.out.println("LISTVIEW IS NULL");
+			listView.setItems(obsList);
+		}
 		stage.close();
+
 	}
 	
 	public void cancel(){
