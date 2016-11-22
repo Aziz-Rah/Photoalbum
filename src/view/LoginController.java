@@ -21,6 +21,10 @@ public class LoginController {
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	
 	public void login() throws Exception {
+		for(int i = 0; i < users.size(); i++) {
+			System.out.println("User: " + users.get(i));
+		}
+		
 		String user = username.getText().toLowerCase();
 		Stage stage;
 		Parent root;
@@ -34,7 +38,7 @@ public class LoginController {
 			boolean isUser = false;
 			
 			for(int i = 0; i < users.size(); i++) {
-				if(username.equals(users.get(i).toString())) {
+				if(user.equals(users.get(i).toString())) {
 					isUser = true;
 					users.get(i).selectUser();
 				}

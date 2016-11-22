@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.*;
@@ -32,7 +33,33 @@ public class AdminController {
 	@FXML Button okD;
 	@FXML Text user;
 	
+	@FXML ListView<String> listView;
+	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
+	ObservableList<String> list = FXCollections.observableArrayList();	
+	
+	public void start(Stage stage) {	
+		/*
+		list.add("test");
+		list.add("dummy");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println("user: " + list.get(i));
+		}
+		System.out.println("TEST");
+		*/
+		
+		for(int i = 0; i < users.size(); i++) {
+			list.add(users.get(i).toString());
+		}
+		/*
+		if(list.size() > 0) {
+			listView.setItems(list);
+			listView.getSelectionModel().select(0);
+		}
+		*/
+		listView.setItems(list);
+		listView.getSelectionModel().select(0);
+	}
 	
 	public void back() throws Exception {
 		Stage stage = (Stage)back.getScene().getWindow();
@@ -77,8 +104,19 @@ public class AdminController {
 	public void ok(){
 		Stage stage = (Stage)ok.getScene().getWindow();
 		users.add(new User(field.getText().toLowerCase()));
-		stage.close();
+		for(int i = 0; i < users.size(); i++) {
+			System.out.println("User: " + users.get(i));
+		}
 		
+		list.add(field.getText().toLowerCase());
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
+		/*
+		if(list != null)
+			listView.setItems(list); // this causes NullPointerException
+			*/
+		stage.close();
 	}
 	
 	public void cancel(){
