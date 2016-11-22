@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import app.PhotoAlbum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.*;
@@ -42,9 +44,7 @@ public class AdminController {
 	
 	public void start(Stage stage) {	
 		// for debugging
-		for(int i = 0; i < obsList.size(); i++) {
-			System.out.println("user: " + obsList.get(i));
-		}
+		
 		for(int i = 0; i < users.size(); i++) {
 			obsList.add(users.get(i).toString());
 		}
@@ -55,10 +55,10 @@ public class AdminController {
 		}
 		
 		//obsList.add("test");
-		if(obsList.size() > 0)
-			System.out.println("size of obslist: " + obsList.size());
-			//listView.setItems(obsList);
-		//listView.getSelectionModel().select(0);
+
+		listView.setItems(obsList);
+		listView.getSelectionModel().select(0);
+		
 	}
 	
 	public void back() throws Exception {

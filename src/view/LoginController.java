@@ -22,9 +22,6 @@ public class LoginController {
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	
 	public void login() throws Exception {
-		for(int i = 0; i < users.size(); i++) {
-			System.out.println("User: " + users.get(i));
-		}
 		
 		String user = username.getText().toLowerCase();
 		Stage stage;
@@ -34,9 +31,7 @@ public class LoginController {
 			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/view/Admin.fxml"));
-			
 			root = (AnchorPane)loader.load();
-			
 			AdminController adminController = loader.getController();
 			adminController.start(stage);
 			Scene scene = new Scene(root);
@@ -53,10 +48,18 @@ public class LoginController {
 			
 			if(isUser) {
 				stage = (Stage)login.getScene().getWindow();
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("/view/User.fxml"));
+				root = (AnchorPane)loader.load();
+				UserController userController = loader.getController();
+				userController.start(stage);
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				/*FXMLLoader loader = new FXMLLoader();
 				root = FXMLLoader.load(getClass().getResource("/view/User.fxml"));
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
-				stage.show();
+				stage.show(); */
 			} else {
 				errormsg.setOpacity(1);
 			}

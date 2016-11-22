@@ -25,6 +25,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -43,110 +44,124 @@ public class AlbumScreenController {
 	@FXML Button move;
 	@FXML Button add; 
 	@FXML Button remove;
-	
-	@FXML Button choose;
-	@FXML ImageView imgdisplay;
-	
+	@FXML TextField fieldCap;
+	@FXML TextField fieldTag;
+	@FXML TextField newAlbum;
+
 	@FXML Button editCaption;
 	@FXML Button editTag;
-	
+
 	@FXML Button logout;
 	@FXML Button quit;
-	@FXML Button left;
-	@FXML Button right;
+	@FXML Button back;
 
 	@FXML TextField photoDetails;
 	@FXML TextField txtCaption;
 	@FXML ImageView img;
-	@FXML ListView<String> list = new ListView<String>();
-	
-	@FXML Text albumname;
+	@FXML ListView<Photo> list = new ListView<Photo>();
+
+	@FXML Label albumName;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
+	ObservableList<Photo> items = FXCollections.observableArrayList();
+
 	private Album album;
-	
+	private User user;
+
 	public void start(Stage stage){
 
 		mainStage = stage;
-		
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).isCurrentUser()){
+				user = users.get(i);
 				album = users.get(i).getSelectedAlbum();
 				break;
 			}
 		}
 
-        ObservableList<String> items =FXCollections.observableArrayList();
-        for (Photo p : album.photos){
-        	
-        	items.add(p.getCaption());
-        }
-        list.setItems(items);
+		albumName.setText(album.getName());
 		
-        list.setCellFactory(param -> new ListCell<String>() {
-            private ImageView imageView = new ImageView();
-            @Override
-            public void updateItem(String caption, boolean empty){
-                super.updateItem(caption, empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                	
-                	for (int i = 0; i < album.getNumPhotos(); i++){
-                		Photo photo = album.photos.get(i);
-                		
-                		/* Java Reflection
-                		Field field = null;
-                		
-                		try {
-							field = photo.getClass().getDeclaredField(caption);
-						} catch (NoSuchFieldException | SecurityException e) {
-							e.printStackTrace();
-						}
-                		
-                		try {
-							 photo = (Photo)field.get(photo);
-						} catch (IllegalArgumentException | IllegalAccessException e) {
-							e.printStackTrace();
-						}
-                		*/
-                		
-                		/*if (caption.equals(photo.getCaption())){
-                			imageView.setImage(photo.image);
-                			setGraphic(imageView);
-                			setText(photo.getCaption());
-                			break;
-                		}*/
-                			
-                	}    	
-                }
-            }
-        });
-       /* VBox box = new VBox(list);
-        box.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(box, 200, 200);
-        mainStage.setScene(scene);
-        mainStage.show(); */
-        
-        
-        
-        
-        list.getSelectionModel().select(0);
+		for (Photo p : album.photos){
+
+			items.add(p);
+		}
+		list.setItems(items);
+
+		list.setCellFactory(param -> new ListCell<Photo>() {
+			private ImageView imageView = new ImageView();
+			@Override
+			public void updateItem(Photo p, boolean empty){
+				super.updateItem(p, empty);
+				if (empty) {
+					setText(null);
+					setGraphic(null);
+				} else {
+					imageView.setFitHeight(50);
+					imageView.setFitWidth(50);
+					imageView.setImage(p.image);
+					setText(p.getCaption());
+					setGraphic(imageView);
+				}
+			}
+		});       
+
+		list.getSelectionModel().select(0);
 		itemSelected(mainStage);
-		
+
 		list
-		 .getSelectionModel()
-		 	.selectedItemProperty()
-		 		.addListener(
-		 			(obs, oldVal, newVal) -> 
-		 				itemSelected(mainStage));
-		
+		.getSelectionModel()
+		.selectedItemProperty()
+		.addListener(
+				(obs, oldVal, newVal) -> 
+				itemSelected(mainStage));
+
 		mainStage.show();
-        
+
+	}
+
+	public void move(){
+
+		String s = newAlbum.getText().toLowerCase();
+		int index = list.getSelectionModel().getSelectedIndex();
+		Photo p = items.get(index);
+		
+		for (int i = 0; i < users.size(); i++){
+			if (s.equals(user.getAlbums().get(i).getName())){
+				user.getAlbums().get(i).addPhoto(p);
+				remove();
+				break;
+			}
+		}
 	}
 	
-	public void add() throws Exception {
+	public void back() throws IOException{
+		
+		Stage stage;
+		AnchorPane root;
+		stage = (Stage)back.getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/view/User.fxml"));
+		root = (AnchorPane)loader.load();
+		UserController userController = loader.getController();
+		userController.start(stage);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+	}
+	public void copy(){
+
+		String s = newAlbum.getText().toLowerCase();
+		int index = list.getSelectionModel().getSelectedIndex();
+		Photo p = items.get(index);
+		
+		for (int i = 0; i < users.size(); i++){
+			if (s.equals(user.getAlbums().get(i).getName())){
+				user.getAlbums().get(i).addPhoto(p);
+				break;
+			}
+		}
+	}
+
+	/*public void add() throws Exception {
 		Stage stage;
 		Parent root;
 		stage = new Stage();
@@ -157,70 +172,136 @@ public class AlbumScreenController {
 		stage.initOwner(add.getScene().getWindow());
         stage.showAndWait();
 	}
-	
-	public void choose() {
-		FileChooser fileChooser = new FileChooser();
-		
-		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-        
-        File file = fileChooser.showOpenDialog(null);
-        
-        try {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-			imgdisplay.setImage(image);
-        } catch (IOException ex) {
-            Logger.getLogger(AlbumScreenController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	 */
+
+	public void refresh(){
+
+		items.clear();
+
+		for (Photo p : album.photos){
+
+			items.add(p);
+		}
+		list.setItems(items);
+
+		list.setCellFactory(param -> new ListCell<Photo>() {
+			private ImageView imageView = new ImageView();
+			@Override
+			public void updateItem(Photo p, boolean empty){
+				super.updateItem(p, empty);
+				if (empty) {
+					setText(null);
+					setGraphic(null);
+				} else {
+					imageView.setFitHeight(50);
+					imageView.setFitWidth(50);
+					imageView.setImage(p.image);
+					setText(p.getCaption());
+					setGraphic(imageView);
+				}
+			}
+		});
+		list.getSelectionModel().select(0);
+		itemSelected(mainStage);
+
+		list
+		.getSelectionModel()
+		.selectedItemProperty()
+		.addListener(
+				(obs, oldVal, newVal) -> 
+				itemSelected(mainStage));
+
+		mainStage.show();
 	}
-	
+
+	public void add() {
+		FileChooser fileChooser = new FileChooser();
+
+		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+		fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+		File file = fileChooser.showOpenDialog(null);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(file);
+			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+			img.setImage(image);
+			Photo p = new Photo(image);
+			String tagT,tagL;
+			if (!fieldTag.getText().equals("")){
+				String text = fieldTag.getText().toLowerCase();
+				tagT = text.substring(0,text.indexOf(' '));
+				tagL = text.substring(text.indexOf(' ')+1);
+				if (!tagL.equals(tagT))
+					p.addTag(new Tag(tagT,tagL));
+			}
+			if (!fieldCap.getText().equals("")){
+				p.addCaption(fieldCap.getText().toLowerCase());
+			}
+			album.photos.add(p);
+
+		} catch (IOException ex) {
+			Logger.getLogger(AlbumScreenController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		refresh();
+	}
+
 	public void remove(){
-		
+
 		int index = list.getSelectionModel().getSelectedIndex();
 		album.photos.remove(index);
-		
+		refresh();
+
 	}
-	
+
 	public void editCaption(){
-		
+
 		int index = list.getSelectionModel().getSelectedIndex();
-		album.photos.get(index).editCaption(txtCaption.getText());
-		
+		album.photos.get(index).editCaption(txtCaption.getText().toLowerCase());
+		refresh();
+
 	}
-	
+
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();
 		stage.close();	
 	}
-	
+
 	public void logout() throws IOException{
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).isCurrentUser())
 				users.get(i).deselectUser();
 		}
-		
+
 		Stage stage = (Stage)logout.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	private void itemSelected(Stage mainStage) { 
-				
-		int index = list.getSelectionModel().getSelectedIndex();
-		String caption = album.photos.get(index).getCaption();
-		String date = album.photos.get(index).date;
-		
-		if (index >= 0) {	
-			photoDetails.setText(caption+"\n"+date+"\n");
-			for (Tag t: album.photos.get(index).tags){
-				
-				photoDetails.appendText(t.getType() + ", " + t.getValue());
+
+		if (items.size() > 0){
+
+			int index = list.getSelectionModel().getSelectedIndex();
+			String caption = album.photos.get(index).getCaption();
+			String date = album.photos.get(index).date;
+			if (date == null)
+				date = "No set date";
+
+			if (index >= 0) {	
+				photoDetails.setText("Caption: " + caption +" \n  "+ "Date: " + date +" \n ");
+				for (Tag t: album.photos.get(index).tags){
+
+					photoDetails.appendText("\n Tags: " + t.getType() + ", " + t.getValue());
+				}
+				img.setImage(items.get(index).image);
 			}
+
 		}
 	}
 }

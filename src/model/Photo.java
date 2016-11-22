@@ -12,6 +12,7 @@ public class Photo implements Serializable {
 	
 	public Photo(Image image) {
 		this.image = image;
+		tags = new ArrayList<Tag>();
 	}
 	
 	public void addCaption(String caption) {

@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlbumScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlbumScreenController">
    <children>
-      <Button fx:id="add" layoutX="375.0" layoutY="27.0" mnemonicParsing="false" onAction="#add" text="Add" />
-      <Button fx:id="remove" layoutX="630.0" layoutY="27.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Button fx:id="editCaption" layoutX="49.0" layoutY="377.0" mnemonicParsing="false" onAction="#editCaption" text="Edit Caption" />
-      <TextField fx:id="photoDetails" layoutX="346.0" layoutY="377.0" prefHeight="100.0" prefWidth="226.0" text="&lt;details&gt;" />
-      <Button fx:id="logout" layoutX="663.0" layoutY="405.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-      <Button fx:id="quit" layoutX="663.0" layoutY="436.0" mnemonicParsing="false" onAction="#quit" text="Quit" />
-      <Text fx:id="albumname" layoutX="49.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;albumname&gt;">
+      <Button fx:id="add" layoutX="685.0" layoutY="124.0" mnemonicParsing="false" onAction="#add" text="Add" />
+      <Button fx:id="remove" layoutX="42.0" layoutY="171.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+      <Button fx:id="editCaption" layoutX="91.0" layoutY="524.0" mnemonicParsing="false" onAction="#editCaption" text="Edit Caption" />
+      <TextField fx:id="photoDetails" layoutX="279.0" layoutY="536.0" prefHeight="100.0" prefWidth="430.0" text="&lt;details&gt;" />
+      <Button fx:id="logout" layoutX="722.0" layoutY="548.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="quit" layoutX="731.0" layoutY="586.0" mnemonicParsing="false" onAction="#quit" text="Quit" />
+      <ImageView fx:id="img" fitHeight="351.0" fitWidth="465.0" layoutX="282.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="list" layoutX="42.0" layoutY="210.0" prefHeight="303.0" prefWidth="200.0" />
+      <Button fx:id="move" layoutX="343.0" layoutY="27.0" mnemonicParsing="false" onAction="#move" text="Move" />
+      <Button fx:id="copy" layoutX="288.0" layoutY="27.0" mnemonicParsing="false" onAction="#copy" text="Copy" />
+      <TextField fx:id="txtCaption" layoutX="37.0" layoutY="563.0" prefHeight="76.0" prefWidth="226.0" />
+      <TextField fx:id="fieldCap" layoutX="142.0" layoutY="124.0" prefHeight="31.0" prefWidth="242.0" promptText="caption for photo" />
+      <TextField fx:id="fieldTag" layoutX="412.0" layoutY="124.0" prefHeight="31.0" prefWidth="226.0" promptText="tags for photo &quot;type value&quot;" />
+      <Label fx:id="albumName" layoutX="31.0" layoutY="17.0" prefHeight="66.0" prefWidth="226.0" text="Label">
          <font>
-            <Font size="24.0" />
+            <Font size="32.0" />
          </font>
-      </Text>
-      <ImageView fx:id="img" fitHeight="303.0" fitWidth="342.0" layoutX="288.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="list" layoutX="49.0" layoutY="57.0" prefHeight="303.0" prefWidth="200.0" />
-      <Button fx:id="left" layoutX="256.0" layoutY="210.0" mnemonicParsing="false" onAction="#left" text="&lt;" />
-      <Button fx:id="right" layoutX="629.0" layoutY="210.0" mnemonicParsing="false" onAction="#right" text="&gt;" />
-      <Button fx:id="move" layoutX="317.0" layoutY="27.0" mnemonicParsing="false" onAction="#move" text="Move" />
-      <Button fx:id="copy" layoutX="260.0" layoutY="27.0" mnemonicParsing="false" onAction="#copy" text="Copy" />
-      <TextField fx:id="txtCaption" layoutX="49.0" layoutY="407.0" prefHeight="76.0" prefWidth="226.0" />
+      </Label>
+      <TextField fx:id="newAlbum" layoutX="451.0" layoutY="27.0" prefHeight="31.0" prefWidth="242.0" promptText="name of Album to move/copy" />
+      <Button mnemonicParsing="false" text="Button" />
+      <Button fx:id="back" layoutX="33.0" layoutY="93.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

@@ -11,22 +11,13 @@ public class User implements Serializable {
 	
 	public User(String name) {
 		this.name = name;
+		albums = new ArrayList<Album>();
 		currentUser = false;
 	}
 	
-	public boolean addAlbum(Album name) {
-		boolean add = true;
-		for(int i = 0; i < albums.size(); i++) {
-			if(name.equals(albums.get(i).getName()))
-				add = false;
-		}
-		
-		if(add) {
-			albums.add(name);
-			return true;
-		}
-		
-		return false;
+	public void addAlbum(Album name) {
+
+		albums.add(name);
 	}
 	
 	public void selectAlbum(int index) {

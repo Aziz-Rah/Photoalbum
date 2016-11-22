@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class UserController {
 	@FXML Button create;
@@ -38,20 +39,66 @@ public class UserController {
 	ObservableList<String> list = FXCollections.observableArrayList();	
 	
 	public void start(Stage stage) {
+		
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).isCurrentUser())
+			if(users.get(i).isCurrentUser()){
 				user = users.get(i);
+			}
 		}
 		albums = user.getAlbums();
+		
 		String s;
-		for(int i = 0; i < albums.size(); i++) {
+		for(int i = 0; i < albums.size(); i++) { //only needed for serialization
 			// get strings and put them in listview
 			s = albums.get(i).getName() + "\n" + albums.get(i).photos.size() + " Photos";
 			list.add(s);
+			
 		}
 		
 		listView.setItems(list);
 		listView.getSelectionModel().select(0);
+	}
+	
+	public void delete(){
+		
+		int index = listView.getSelectionModel().getSelectedIndex();
+		albums.remove(index);
+		refresh();
+	}
+	
+	public void open() throws IOException{
+		
+		int index = listView.getSelectionModel().getSelectedIndex();
+		user.selectAlbum(index);
+		Stage stage;
+		AnchorPane root;
+		stage = (Stage)open.getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/view/AlbumScreen.fxml"));
+		root = (AnchorPane)loader.load();
+		AlbumScreenController asc = loader.getController();
+		asc.start(stage);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+	}
+	
+	public void rename(){
+		
+		int index = listView.getSelectionModel().getSelectedIndex();
+		albums.get(index).setName(field.getText().toLowerCase());
+		refresh();
+	}
+	
+	
+	public void refresh(){
+		String s;
+		list.clear();
+		for(int i = 0; i < albums.size(); i++) { 
+			// get strings and put them in listview
+			s = albums.get(i).getName() + "\n" + albums.get(i).photos.size() + " Photos";
+			list.add(s);
+		}
+		listView.setItems(list);
 	}
 	
 	public void search() throws Exception {
@@ -79,18 +126,14 @@ public class UserController {
 	
 	public void create() throws IOException{
 		
-		Stage stage;
-		Parent root;
-		stage = new Stage();
-		root = FXMLLoader.load(getClass().getResource("CreateAlbumPopUp.fxml"));
-		stage.setScene(new Scene(root));
-		stage.setTitle("Create Album");
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.initOwner(create.getScene().getWindow());
-        stage.showAndWait();
+		Album album = new Album(field.getText().toLowerCase());
+		album.setName(field.getText().toLowerCase());
+		user.addAlbum(album);
+		//list.add(album.getName());
+		refresh();
 	}
 	
-	public void okC(){
+	/*public void okC(){
 		Stage stage = (Stage)okC.getScene().getWindow();
 		Album album = new Album(field.getText());
 		user.addAlbum(album);
@@ -101,7 +144,7 @@ public class UserController {
 	public void cancelC(){
 		Stage stage = (Stage)cancelC.getScene().getWindow();
 		stage.close();
-	}
+	}*/
 	
 	public void quit() {
 		// serialize objects
