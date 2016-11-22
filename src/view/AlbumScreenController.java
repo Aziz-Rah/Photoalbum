@@ -1,12 +1,19 @@
 package view;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import app.PhotoAlbum;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -38,6 +45,7 @@ public class AlbumScreenController {
 	@FXML Button remove;
 	
 	@FXML Button choose;
+	@FXML ImageView imgdisplay;
 	
 	@FXML Button editCaption;
 	@FXML Button editTag;
@@ -162,9 +170,9 @@ public class AlbumScreenController {
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            myImageView.setImage(image);
+			imgdisplay.setImage(image);
         } catch (IOException ex) {
-            Logger.getLogger(JavaFXPixel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlbumScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
 	
