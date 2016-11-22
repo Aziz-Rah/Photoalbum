@@ -178,7 +178,9 @@ public class AlbumScreenController {
 	
 	public void remove(){
 		
-		int index = list.get
+		int index = list.getSelectionModel().getSelectedIndex();
+		album.photos.remove(index);
+		
 	}
 	
 	public void editCaption(){
