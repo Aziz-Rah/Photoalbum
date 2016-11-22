@@ -22,6 +22,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ListView layoutX="13.0" layoutY="56.0" prefHeight="330.0" prefWidth="575.0" />
+      <ListView fx:id="listView" layoutX="13.0" layoutY="56.0" prefHeight="330.0" prefWidth="575.0" />
    </children>
 </AnchorPane>

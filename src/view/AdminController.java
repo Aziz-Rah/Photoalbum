@@ -37,25 +37,27 @@ public class AdminController {
 	@FXML ListView<String> listView;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
-	ObservableList<String> list = FXCollections.observableArrayList();	
+	ObservableList<String> obsList = FXCollections.observableArrayList("admin");	
 	
 	public void start(Stage stage) {	
-		
-
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println("user: " + list.get(i));
+		// for debugging
+		for(int i = 0; i < obsList.size(); i++) {
+			System.out.println("user: " + obsList.get(i));
 		}
 
 		for(int i = 0; i < users.size(); i++) {
-			list.add(users.get(i).toString());
+			obsList.add(users.get(i).toString());
 		}
-		/*
-		if(list.size() > 0) {
-			listView.setItems(list);
+		
+		if(obsList.size() > 0) {
+			listView.setItems(obsList);
 			listView.getSelectionModel().select(0);
 		}
-		*/
-		//listView.setItems(list);
+		
+		//obsList.add("test");
+		if(obsList.size() > 0)
+			System.out.println("size of obslist: " + obsList.size());
+			//listView.setItems(obsList);
 		//listView.getSelectionModel().select(0);
 	}
 	
@@ -120,15 +122,15 @@ public class AdminController {
 			System.out.println("User: " + users.get(i));
 		}
 		
-		list.add(field.getText().toLowerCase());
+		obsList.add(field.getText().toLowerCase());
 		
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println("from list: " + list.get(i).toString());
+		for(int i = 0; i < obsList.size(); i++) {
+			System.out.println("from list: " + obsList.get(i).toString());
 		}
-		/*
-		if(list != null)
-			listView.setItems(list); // this causes NullPointerException
-			*/
+		
+		if(obsList.size() > 0)
+			listView.setItems(obsList); // this causes NullPointerException
+			
 		stage.close();
 	}
 	

@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -35,6 +36,8 @@ public class AlbumScreenController {
 	@FXML Button move;
 	@FXML Button add; 
 	@FXML Button remove;
+	
+	@FXML Button choose;
 	
 	@FXML Button editCaption;
 	@FXML Button editTag;
@@ -133,6 +136,36 @@ public class AlbumScreenController {
 		
 		mainStage.show();
         
+	}
+	
+	public void add() throws Exception {
+		Stage stage;
+		Parent root;
+		stage = new Stage();
+		root = FXMLLoader.load(getClass().getResource("AddPhoto.fxml"));
+		stage.setScene(new Scene(root));
+		stage.setTitle("Add Photo");
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(add.getScene().getWindow());
+        stage.showAndWait();
+	}
+	
+	public void choose() {
+		FileChooser fileChooser = new FileChooser();
+		
+		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        
+        File file = fileChooser.showOpenDialog(null);
+        
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            myImageView.setImage(image);
+        } catch (IOException ex) {
+            Logger.getLogger(JavaFXPixel.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 	
 	public void remove(){
