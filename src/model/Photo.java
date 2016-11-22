@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class Photo implements Serializable {
 	public Image image;
 	private String caption;
-	ArrayList<Tag> tags;
+	public String date;
+	public ArrayList<Tag> tags;
 	
 	public Photo(Image image) {
 		this.image = image;
@@ -19,6 +20,10 @@ public class Photo implements Serializable {
 	
 	public void editCaption(String caption) {
 		this.caption = caption;
+	}
+	
+	public String getCaption(){
+		return caption;
 	}
 	
 	public boolean addTag(Tag tag) {
