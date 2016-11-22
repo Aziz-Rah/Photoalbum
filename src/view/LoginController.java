@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 import app.PhotoAlbum;
 import model.User;
@@ -27,13 +28,19 @@ public class LoginController {
 		
 		String user = username.getText().toLowerCase();
 		Stage stage;
-		Parent root;
+		AnchorPane root;
 		if(user.equals("admin")) {
 			stage = (Stage)login.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("/view/Admin.fxml"));
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/view/Admin.fxml"));
+			
+			root = (AnchorPane)loader.load();
+			
+			AdminController adminController = loader.getController();
+			adminController.start(stage);
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
-			stage.show();
 		} else {
 			boolean isUser = false;
 			
