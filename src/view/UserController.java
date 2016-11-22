@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import app.PhotoAlbum;
@@ -8,12 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 public class UserController {
 	@FXML Button create;
@@ -23,6 +26,9 @@ public class UserController {
 	@FXML Button search;
 	@FXML Button logout;
 	@FXML Button quit;
+	@FXML Button okC;
+	@FXML Button cancelC;
+	@FXML TextField field;
 	@FXML ListView<String> listView;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
@@ -69,6 +75,32 @@ public class UserController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	public void create() throws IOException{
+		
+		Stage stage;
+		Parent root;
+		stage = new Stage();
+		root = FXMLLoader.load(getClass().getResource("CreateAlbumPopUp.fxml"));
+		stage.setScene(new Scene(root));
+		stage.setTitle("Add User");
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(create.getScene().getWindow());
+        stage.showAndWait();
+	}
+	
+	public void okC(){
+		Stage stage = (Stage)okC.getScene().getWindow();
+		Album album = new Album(field.getText());
+		user.addAlbum(album);
+		stage.close();
+		
+	}
+	
+	public void cancelC(){
+		Stage stage = (Stage)cancelC.getScene().getWindow();
+		stage.close();
 	}
 	
 	public void quit() {

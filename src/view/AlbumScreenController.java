@@ -118,6 +118,9 @@ public class AlbumScreenController {
         mainStage.setScene(scene);
         mainStage.show(); */
         
+        
+        
+        
         list.getSelectionModel().select(0);
 		itemSelected(mainStage);
 		
