@@ -111,9 +111,6 @@ public class AdminController {
 	
 	public void delete() throws IOException{
 		
-		System.out.println(users.get(0).toString());
-		System.out.println(users.get(1).toString());
-		
 		for (int i = 0; i < users.size(); i++){
 			if (obsList.get(i).toString().equals(field2.getText().toLowerCase())){
 
