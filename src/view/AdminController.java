@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.*;
 
@@ -39,15 +40,12 @@ public class AdminController {
 	ObservableList<String> list = FXCollections.observableArrayList();	
 	
 	public void start(Stage stage) {	
-		/*
-		list.add("test");
-		list.add("dummy");
+		
+
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println("user: " + list.get(i));
 		}
-		System.out.println("TEST");
-		*/
-		
+
 		for(int i = 0; i < users.size(); i++) {
 			list.add(users.get(i).toString());
 		}
@@ -57,16 +55,30 @@ public class AdminController {
 			listView.getSelectionModel().select(0);
 		}
 		*/
-		listView.setItems(list);
-		listView.getSelectionModel().select(0);
+		//listView.setItems(list);
+		//listView.getSelectionModel().select(0);
 	}
 	
 	public void back() throws Exception {
+		/*
 		Stage stage = (Stage)back.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		*/
+		
+		Stage stage = (Stage)back.getScene().getWindow();
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/view/Login.fxml"));
+		
+		AnchorPane root = (AnchorPane)loader.load();
+		
+		AdminController adminController = loader.getController();
+		adminController.start(stage);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
 	}
 	
 	public void quit() {
@@ -109,8 +121,9 @@ public class AdminController {
 		}
 		
 		list.add(field.getText().toLowerCase());
+		
 		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).toString());
+			System.out.println("from list: " + list.get(i).toString());
 		}
 		/*
 		if(list != null)

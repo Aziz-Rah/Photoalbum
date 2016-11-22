@@ -16,9 +16,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createalbum" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" text="Create Album" />
-      <Button fx:id="logout" layoutX="525.0" layoutY="324.0" mnemonicParsing="false" text="Logout" />
-      <Button fx:id="quit" layoutX="525.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Quit" />
+      <Button fx:id="createalbum" onAction="#create" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" text="Create Album" />
+      <Button fx:id="logout" onAction="#logout" layoutX="525.0" layoutY="324.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="quit" onAction="#quit"  layoutX="525.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Quit" />
       <Label layoutX="17.0" layoutY="39.0" text="Date Range">
          <font>
             <Font size="14.0" />

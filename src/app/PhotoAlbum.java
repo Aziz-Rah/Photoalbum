@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import model.User;
+import view.LoginController;
 
 public class PhotoAlbum extends Application implements Serializable {
 	public ArrayList<User> users;
@@ -49,6 +50,9 @@ public class PhotoAlbum extends Application implements Serializable {
 		loader.setLocation(getClass().getResource("/view/Login.fxml"));
 		
 		AnchorPane root = (AnchorPane)loader.load();
+		
+		LoginController loginController = loader.getController();
+		//LoginController.start(primaryStage);
 
 		Scene scene = new Scene(root, 600, 400);
 		primaryStage.setTitle("Photo Album");

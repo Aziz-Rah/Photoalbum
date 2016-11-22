@@ -84,7 +84,7 @@ public class UserController {
 		stage = new Stage();
 		root = FXMLLoader.load(getClass().getResource("CreateAlbumPopUp.fxml"));
 		stage.setScene(new Scene(root));
-		stage.setTitle("Add User");
+		stage.setTitle("Create Album");
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(create.getScene().getWindow());
         stage.showAndWait();
