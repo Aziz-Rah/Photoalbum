@@ -27,4 +27,14 @@ public class Album implements Serializable {
 	public int getNumPhotos() {
 		return photos.size();
 	}
+	
+	public ArrayList<Tag> getAllTags(){
+		ArrayList<Tag> list = new ArrayList<Tag>();
+		for (Photo p : photos){
+			for (Tag t : p.tags){
+				list.add(t);
+			}
+		}
+		return list;
+	}
 }

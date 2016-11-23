@@ -7,12 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" 
-minHeight="-Infinity" minWidth="-Infinity" 
-prefHeight="598.0" prefWidth="774.0" 
-xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="view.UserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="ALBUMS">
          <font>
@@ -28,9 +25,11 @@ fx:controller="view.UserController">
             <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="68.0" text="Search" />
          </buttons>
       </ButtonBar>
-      <Button fx:id="logout" layoutX="525.0" layoutY="326.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-      <Button fx:id="quit" layoutX="525.0" layoutY="359.0" minWidth="0.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
-      <ListView fx:id="listView" layoutX="25.0" layoutY="231.0" prefHeight="335.0" prefWidth="500.0" />
-      <TextField fx:id="field" layoutX="25.0" layoutY="59.0" prefHeight="97.0" prefWidth="367.0" />
+      <Button fx:id="logout" layoutX="544.0" layoutY="333.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="quit" layoutX="547.0" layoutY="364.0" minWidth="0.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
+      <ListView fx:id="listView" layoutX="25.0" layoutY="132.0" prefHeight="263.0" prefWidth="509.0" />
+      <TextField fx:id="field" layoutX="25.0" layoutY="59.0" prefHeight="31.0" prefWidth="220.0" promptText="Name of album to be created" />
+      <Text layoutX="25.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill the text field and then you can create the album" />
+      <Text layoutX="25.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click the album to Open/Delete/Rename/Search" />
    </children>
 </AnchorPane>

@@ -61,7 +61,7 @@ public class AlbumScreenController {
 	@FXML ListView<Photo> list = new ListView<Photo>();
 
 	@FXML Label albumName;
-	
+
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	ObservableList<Photo> items = FXCollections.observableArrayList();
 
@@ -80,7 +80,7 @@ public class AlbumScreenController {
 		}
 
 		albumName.setText(album.getName());
-		
+
 		for (Photo p : album.photos){
 
 			items.add(p);
@@ -124,7 +124,7 @@ public class AlbumScreenController {
 		String s = newAlbum.getText().toLowerCase();
 		int index = list.getSelectionModel().getSelectedIndex();
 		Photo p = items.get(index);
-		
+
 		for (int i = 0; i < users.size(); i++){
 			if (s.equals(user.getAlbums().get(i).getName())){
 				user.getAlbums().get(i).addPhoto(p);
@@ -133,9 +133,9 @@ public class AlbumScreenController {
 			}
 		}
 	}
-	
+
 	public void back() throws IOException{
-		
+
 		Stage stage;
 		AnchorPane root;
 		stage = (Stage)back.getScene().getWindow();
@@ -147,12 +147,13 @@ public class AlbumScreenController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
+
 	public void copy(){
 
 		String s = newAlbum.getText().toLowerCase();
 		int index = list.getSelectionModel().getSelectedIndex();
 		Photo p = items.get(index);
-		
+
 		for (int i = 0; i < users.size(); i++){
 			if (s.equals(user.getAlbums().get(i).getName())){
 				user.getAlbums().get(i).addPhoto(p);
@@ -253,7 +254,14 @@ public class AlbumScreenController {
 		int index = list.getSelectionModel().getSelectedIndex();
 		album.photos.remove(index);
 		refresh();
-
+		try {
+			if (album.photos.get(0) != null)
+				img.setImage(album.photos.get(0).image);
+		}
+		catch (IndexOutOfBoundsException e){
+			Image none = null;
+			img.setImage(none);
+		}
 	}
 
 	public void editCaption(){
@@ -289,7 +297,7 @@ public class AlbumScreenController {
 
 			int index = list.getSelectionModel().getSelectedIndex();
 			String caption = album.photos.get(index).getCaption();
-			String date = album.photos.get(index).date;
+			String date = album.photos.get(index).dateStr();
 			if (date == null)
 				date = "No set date";
 

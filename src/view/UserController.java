@@ -27,8 +27,6 @@ public class UserController {
 	@FXML Button search;
 	@FXML Button logout;
 	@FXML Button quit;
-	@FXML Button okC;
-	@FXML Button cancelC;
 	@FXML TextField field;
 	@FXML ListView<String> listView;
 	
@@ -102,11 +100,23 @@ public class UserController {
 	}
 	
 	public void search() throws Exception {
-		Stage stage = (Stage)search.getScene().getWindow();
+		
+		Stage stage;
+		AnchorPane root;
+		stage = (Stage)open.getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/view/Search.fxml"));
+		root = (AnchorPane)loader.load();
+		SearchController searchController = loader.getController();
+		searchController.start(stage);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+		/*Stage stage = (Stage)search.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Search.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.show();
+		stage.show(); */
 	}
 	
 	public void logout() throws Exception {
@@ -132,19 +142,6 @@ public class UserController {
 		//list.add(album.getName());
 		refresh();
 	}
-	
-	/*public void okC(){
-		Stage stage = (Stage)okC.getScene().getWindow();
-		Album album = new Album(field.getText());
-		user.addAlbum(album);
-		stage.close();
-		
-	}
-	
-	public void cancelC(){
-		Stage stage = (Stage)cancelC.getScene().getWindow();
-		stage.close();
-	}*/
 	
 	public void quit() {
 		// serialize objects

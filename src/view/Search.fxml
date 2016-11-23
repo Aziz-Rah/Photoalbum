@@ -3,44 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="enddate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchController">
+<AnchorPane fx:id="enddate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="SEARCH">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createalbum" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" onAction="#create" text="Create Album" />
-      <Button fx:id="logout" layoutX="525.0" layoutY="324.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-      <Button fx:id="quit" layoutX="525.0" layoutY="359.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
-      <Label layoutX="17.0" layoutY="39.0" text="Date Range">
+      <Button fx:id="createalbum" layoutX="601.0" layoutY="12.0" mnemonicParsing="false" onAction="#create" text="Create Album" />
+      <Button fx:id="logout" layoutX="20.0" layoutY="199.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="quit" layoutX="23.0" layoutY="251.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
+      <Label layoutX="159.0" layoutY="33.0" text="Date Range">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="312.0" layoutY="39.0" text="Tag">
+      <Label layoutX="447.0" layoutY="43.0" text="Tag">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="17.0" layoutY="65.0" text="start date" />
-      <Label layoutX="20.0" layoutY="91.0" text="end date" />
-      <DatePicker fx:id="startdate" layoutX="82.0" layoutY="60.0" />
-      <DatePicker layoutX="82.0" layoutY="86.0" />
-      <TextField fx:id="tagtype" layoutX="312.0" layoutY="60.0" prefHeight="27.0" prefWidth="167.0" promptText="&lt;type&gt;" />
-      <Button fx:id="search" layoutX="525.0" layoutY="73.0" mnemonicParsing="false" text="Search" />
-      <ScrollPane layoutX="17.0" layoutY="126.0" prefHeight="260.0" prefWidth="500.0">
-         <content>
-            <TilePane hgap="5.0" prefHeight="259.0" prefWidth="482.0" vgap="5.0" />
-         </content>
-      </ScrollPane>
-      <TextField fx:id="tagvalue" layoutX="312.0" layoutY="87.0" prefHeight="27.0" prefWidth="167.0" promptText="&lt;value&gt;" />
-      <TextField fx:id="fieldA" layoutX="247.0" layoutY="12.0" prefHeight="31.0" prefWidth="232.0" />
+      <Label layoutX="36.0" layoutY="65.0" text="start date" />
+      <Label layoutX="38.0" layoutY="109.0" text="end date" />
+      <DatePicker fx:id="startDate" layoutX="117.0" layoutY="60.0" />
+      <DatePicker fx:id="endDate" layoutX="117.0" layoutY="104.0" />
+      <TextField fx:id="tagType" layoutX="396.0" layoutY="71.0" prefHeight="27.0" prefWidth="167.0" promptText="&lt;type&gt;" />
+      <Button fx:id="search" layoutX="595.0" layoutY="89.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <TextField fx:id="tagVal" layoutX="396.0" layoutY="104.0" prefHeight="27.0" prefWidth="167.0" promptText="&lt;value&gt;" />
+      <TextField fx:id="fieldA" layoutX="363.0" layoutY="12.0" prefHeight="31.0" prefWidth="232.0" />
+      <ListView fx:id="list" layoutX="94.0" layoutY="142.0" prefHeight="368.0" prefWidth="248.0" />
+      <Button fx:id="back" layoutX="28.0" layoutY="150.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <ImageView fitHeight="368.0" fitWidth="344.0" layoutX="363.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
