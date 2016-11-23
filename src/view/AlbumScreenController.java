@@ -56,6 +56,7 @@ public class AlbumScreenController {
 	@FXML Button editCaption;
 	@FXML Button editTag;
 	@FXML Button deleteTag;
+	@FXML Button addTag;
 	
 	@FXML Button logout;
 	@FXML Button quit;
@@ -182,12 +183,41 @@ public class AlbumScreenController {
 	 */
 
 	public void editTag(){
-		
+	
+		String oldType = preT.getText().toLowerCase();
+		String oldVal = preV.getText().toLowerCase();
+		String type = newType.getText().toLowerCase();
+		String val = newVal.getText().toLowerCase();
+		int index = list.getSelectionModel().getSelectedIndex();
+		ArrayList<Tag> tag = items.get(index).tags;
+		for (Tag t : tag){
+			if (oldType.equals(t.getType()))
+				t.setType(type);
+			if (oldVal.equals(t.getValue()))
+				t.setVal(val);
+		}
+		refresh();
 	}
 	
-	public void editVal(){
+	public void addTag(){
 		
+		String type = newType.getText().toLowerCase();
+		String val = newVal.getText().toLowerCase();
+		int index = list.getSelectionModel().getSelectedIndex();
+		Photo p = items.get(index);
+		p.addTag(new Tag(type,val));
+		refresh();
+
+	}
+	public void deleteTag(){
 		
+		String type = newType.getText().toLowerCase();
+		String val = newVal.getText().toLowerCase();
+		int index = list.getSelectionModel().getSelectedIndex();
+		ArrayList<Tag> tag = items.get(index).tags;
+		for (Tag t : tag){
+			
+		}
 	}
 	
 	public void refresh(){

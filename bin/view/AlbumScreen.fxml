@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlbumScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlbumScreenController">
    <children>
       <Button fx:id="add" layoutX="685.0" layoutY="124.0" mnemonicParsing="false" onAction="#add" text="Add" />
       <Button fx:id="remove" layoutX="54.0" layoutY="155.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
@@ -35,9 +35,16 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <TextField fx:id="newAlbum" layoutX="451.0" layoutY="27.0" prefHeight="31.0" prefWidth="242.0" promptText="name of Album to move/copy" />
+      <TextField fx:id="newAlbum" layoutX="418.0" layoutY="27.0" prefHeight="31.0" prefWidth="242.0" promptText="name of Album to move/copy" />
       <Button fx:id="back" layoutX="42.0" layoutY="77.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Text layoutX="180.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill the textfields below for captions and tags before you add photo" wrappingWidth="464.9999991059303" />
       <Text layoutX="52.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to nagivate slideshow" />
+      <Button fx:id="editTag" layoutX="696.0" layoutY="77.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
+      <Button fx:id="deleteTag" layoutX="349.0" layoutY="68.0" mnemonicParsing="false" onAction="#deleteTag" text="Delete Tag" />
+      <TextField fx:id="preT" layoutX="136.0" layoutY="68.0" prefHeight="31.0" prefWidth="200.0" promptText="Type to be edited/deleted" />
+      <TextField fx:id="preV" layoutX="451.0" layoutY="68.0" prefHeight="31.0" prefWidth="211.0" promptText="Value to be edited/deleted" />
+      <TextField fx:id="newType" layoutX="697.0" layoutY="11.0" promptText="New type" />
+      <TextField fx:id="newVal" layoutX="697.0" layoutY="43.0" promptText="New Value" />
+      <Button fx:id="addTag" layoutX="790.0" layoutY="77.0" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
    </children>
 </AnchorPane>

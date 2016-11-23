@@ -41,7 +41,7 @@ public class SearchController {
 	@FXML TextField tagVal;
 
 	@FXML ListView<Photo> list = new ListView<Photo>();
-	@FXML ImageView img;
+	@FXML ImageView img = new ImageView();
 
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	ObservableList<Photo> items = FXCollections.observableArrayList();

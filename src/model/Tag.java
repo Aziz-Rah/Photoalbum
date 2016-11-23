@@ -19,6 +19,14 @@ public class Tag implements Serializable {
 		return value;
 	}
 	
+	public void setType(String type){
+		this.type = type;
+	}
+	
+	public void setVal(String val){
+		this.value = val;
+	}
+	
 	public boolean equalsType(String type) {
 		return type.equalsIgnoreCase(type);
 	}
