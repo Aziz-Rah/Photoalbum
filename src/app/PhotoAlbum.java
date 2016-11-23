@@ -1,3 +1,9 @@
+/**
+ * PhotoAlbum (main app) class
+ * @author Amy Guinto
+ * @author Aziz Rahman
+ */
+
 package app;
 
 import javafx.application.Application;
@@ -26,6 +32,9 @@ public class PhotoAlbum extends Application implements Serializable {
 	public static final String storeDir = "dat";
 	public static final String storeFile = "users.dat";
 	
+	/**
+	 * PhotoAlbum constructor creates array list of users
+	 */
 	public PhotoAlbum() { 
 		users = new ArrayList<User>();
 		//storeFiles = new ArrayList<String>();
@@ -44,6 +53,11 @@ public class PhotoAlbum extends Application implements Serializable {
 		return app;
 	}
 	
+	/**
+	 * Overridden start(Stage primaryStage) method
+	 * Creates and sets scene for login
+	 * @param primaryStage
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {                
 		FXMLLoader loader = new FXMLLoader();   

@@ -39,12 +39,20 @@
       <Button fx:id="back" layoutX="42.0" layoutY="77.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Text layoutX="180.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill the textfields below for captions and tags before you add photo" wrappingWidth="464.9999991059303" />
       <Text layoutX="52.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to nagivate slideshow" />
+<<<<<<< HEAD
       <Button fx:id="editTag" layoutX="696.0" layoutY="77.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
+=======
+      <Button fx:id="editTag" layoutX="733.0" layoutY="77.0" mnemonicParsing="false" onAction="#editTag" text="Edit Tag" />
+>>>>>>> 951ee492e435e162ba45c4f7c5752be3a4cc3588
       <Button fx:id="deleteTag" layoutX="349.0" layoutY="68.0" mnemonicParsing="false" onAction="#deleteTag" text="Delete Tag" />
       <TextField fx:id="preT" layoutX="136.0" layoutY="68.0" prefHeight="31.0" prefWidth="200.0" promptText="Type to be edited/deleted" />
       <TextField fx:id="preV" layoutX="451.0" layoutY="68.0" prefHeight="31.0" prefWidth="211.0" promptText="Value to be edited/deleted" />
       <TextField fx:id="newType" layoutX="697.0" layoutY="11.0" promptText="New type" />
+<<<<<<< HEAD
       <TextField fx:id="newVal" layoutX="697.0" layoutY="43.0" promptText="New Value" />
       <Button fx:id="addTag" layoutX="790.0" layoutY="77.0" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+=======
+      <TextField fx:id="newValue" layoutX="697.0" layoutY="43.0" promptText="New Value" />
+>>>>>>> 951ee492e435e162ba45c4f7c5752be3a4cc3588
    </children>
 </AnchorPane>
