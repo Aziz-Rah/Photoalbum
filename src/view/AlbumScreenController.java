@@ -211,13 +211,21 @@ public class AlbumScreenController {
 	}
 	public void deleteTag(){
 		
-		String type = newType.getText().toLowerCase();
-		String val = newVal.getText().toLowerCase();
+		String type = preT.getText().toLowerCase();
+		String val = preV.getText().toLowerCase();
 		int index = list.getSelectionModel().getSelectedIndex();
-		ArrayList<Tag> tag = items.get(index).tags;
-		for (Tag t : tag){
-			
+		Photo p = items.get(index);
+		Tag tag = new Tag(type,val);
+		
+		for (Tag t : p.tags){
+			if (tag.getType().equals(t.getType()))
+				items.get(index).tags.remove(t);
+			else if (tag.getValue().equals(t.getValue()))
+				items.get(index).tags.remove(t);
 		}
+		
+	//	p.deleteTag(tag);
+		refresh();
 	}
 	
 	public void refresh(){

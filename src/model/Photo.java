@@ -90,4 +90,13 @@ public class Photo implements Serializable {
 		tags.add(tag);
 		return true;
 	}
+	
+	public void deleteTag(Tag tag){
+		for (Tag t : tags){
+			if (tag.getType().equals(t.getType()))
+				tags.remove(t);
+			else if (tag.getValue().equals(t.getValue()))
+				tags.remove(t);
+		}
+	}
 }
