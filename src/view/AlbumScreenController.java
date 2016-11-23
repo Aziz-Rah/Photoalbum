@@ -47,10 +47,16 @@ public class AlbumScreenController {
 	@FXML TextField fieldCap;
 	@FXML TextField fieldTag;
 	@FXML TextField newAlbum;
-
+	
+	@FXML TextField preT;
+	@FXML TextField preV;
+	@FXML TextField newType;
+	@FXML TextField newVal;
+	
 	@FXML Button editCaption;
 	@FXML Button editTag;
-
+	@FXML Button deleteTag;
+	
 	@FXML Button logout;
 	@FXML Button quit;
 	@FXML Button back;
@@ -175,6 +181,15 @@ public class AlbumScreenController {
 	}
 	 */
 
+	public void editTag(){
+		
+	}
+	
+	public void editVal(){
+		
+		
+	}
+	
 	public void refresh(){
 
 		items.clear();

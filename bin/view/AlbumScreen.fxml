@@ -26,7 +26,10 @@
             <Font size="13.0" />
          </font></TextField>
       <TextField fx:id="fieldCap" layoutX="142.0" layoutY="124.0" prefHeight="31.0" prefWidth="242.0" promptText="caption for photo" />
-      <TextField fx:id="fieldTag" layoutX="412.0" layoutY="124.0" prefHeight="31.0" prefWidth="226.0" promptText="tags for photo &quot;type value&quot;" />
+      <TextField fx:id="fieldTag" layoutX="412.0" layoutY="124.0" prefHeight="31.0" prefWidth="253.0" promptText="tags for photo must be of &quot;type value&quot;">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
       <Label fx:id="albumName" layoutX="31.0" layoutY="17.0" prefHeight="66.0" prefWidth="226.0" text="Label">
          <font>
             <Font size="32.0" />

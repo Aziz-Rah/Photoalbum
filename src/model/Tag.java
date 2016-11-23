@@ -19,7 +19,11 @@ public class Tag implements Serializable {
 		return value;
 	}
 	
-	public boolean equals(Tag tag) {
-		return type.equals(tag.getType()) && value.equals(tag.getValue());
+	public boolean equalsType(String type) {
+		return type.equalsIgnoreCase(type);
+	}
+	
+	public boolean equalsVal(String val){
+		return value.equalsIgnoreCase(val);
 	}
 }

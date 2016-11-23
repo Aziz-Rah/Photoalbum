@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import app.PhotoAlbum;
@@ -18,6 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -43,6 +45,7 @@ public class SearchController {
 
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	ObservableList<Photo> items = FXCollections.observableArrayList();
+	ObservableList<Photo> searchedItems = FXCollections.observableArrayList();
 	Album album;
 	User user;
 
@@ -56,20 +59,22 @@ public class SearchController {
 				break;
 			}
 		}
-		
+
+		if (items != null)
+			items.clear();
+
+		for (Album a : user.getAlbums()){
+			for (Photo p : a.photos){
+				items.add(p);
+			}
+		}
 		refresh();
-		
+
 	}
 
 	public void refresh(){
 
-		if (items != null)
-			items.clear();
-		for (Photo p : album.photos){
-
-			items.add(p);
-		}
-		list.setItems(items);
+		list.setItems(searchedItems);
 
 		list.setCellFactory(param -> new ListCell<Photo>() {
 			private ImageView imageView = new ImageView();
@@ -102,24 +107,72 @@ public class SearchController {
 	}
 
 	public void search(){
-		
+
+		if (searchedItems != null)
+			searchedItems.clear();
+
+		LocalDate min = startDate.getValue();
+		LocalDate max = endDate.getValue();
+		String tag = tagType.getText();
+		String val = tagVal.getText();
+		for (Photo p : items){
+			ArrayList<Tag> tags = p.tags;
+			if (min != null || max != null){
+				if (p.isBetween(min, max))
+					searchedItems.add(p);
+
+				if (tag != null){
+					for (Tag t : tags){
+						if (t.equalsType(tag))
+							searchedItems.add(p);
+					}
+				}
+				else if (val != null){
+					for (Tag t : tags){
+						if (t.equalsVal(val))
+							searchedItems.add(p);
+					}
+				}
+			}
+			else {
+				if (tag != null){
+					for (Tag t : tags){
+						if (t.equalsType(tag))
+							searchedItems.add(p);
+					}
+				}
+				else if (val != null){
+					for (Tag t : tags){
+						if (t.equalsVal(val))
+							searchedItems.add(p);
+					}
+				}
+			}
+		}
+		refresh();
 	}
-	
+
 	public void create() throws Exception {
 
 		String a = fieldA.getText().toLowerCase();
+		Album newAlbum = null;
 		for (int i = 0; i < users.size(); i++){
 			if (users.get(i).isCurrentUser()){
-				Album album = new Album(fieldA.getText().toLowerCase());
-				album.setName(a);
-				users.get(i).addAlbum(album);
+				newAlbum = new Album(fieldA.getText().toLowerCase());
+				newAlbum.setName(a);
+				users.get(i).addAlbum(newAlbum);
 				break;
 			}
-		}		
+		}	
+		
+		for (Photo p : searchedItems){
+			
+			newAlbum.addPhoto(p);
+		}
 	}
 
 	public void back() throws IOException{
-		
+
 		Stage stage;
 		AnchorPane root;
 		stage = (Stage)back.getScene().getWindow();
@@ -131,7 +184,7 @@ public class SearchController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
-	
+
 	public void logout() throws Exception {
 		// serialize
 
@@ -158,10 +211,15 @@ public class SearchController {
 		if (items.size() > 0){
 
 			int index = list.getSelectionModel().getSelectedIndex();
-			if (index >= 0) {	
-				img.setImage(items.get(index).image);
+			if (index >= 0) {
+				System.out.println(index);
+				Image image = searchedItems.get(index).image;
+				if (image == null){
+					System.out.println();
+				}
+				else
+					img.setImage(image);
 			}
-
 		}
 	}
 }

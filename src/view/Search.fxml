@@ -16,7 +16,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createalbum" layoutX="601.0" layoutY="12.0" mnemonicParsing="false" onAction="#create" text="Create Album" />
+      <Button fx:id="createAlbum" layoutX="601.0" layoutY="12.0" mnemonicParsing="false" onAction="#create" text="Create Album" />
       <Button fx:id="logout" layoutX="20.0" layoutY="199.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
       <Button fx:id="quit" layoutX="23.0" layoutY="251.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="61.0" text="Quit" />
       <Label layoutX="159.0" layoutY="33.0" text="Date Range">
@@ -39,6 +39,6 @@
       <TextField fx:id="fieldA" layoutX="363.0" layoutY="12.0" prefHeight="31.0" prefWidth="232.0" />
       <ListView fx:id="list" layoutX="94.0" layoutY="142.0" prefHeight="368.0" prefWidth="248.0" />
       <Button fx:id="back" layoutX="28.0" layoutY="150.0" mnemonicParsing="false" onAction="#back" text="Back" />
-      <ImageView fitHeight="368.0" fitWidth="344.0" layoutX="363.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img" fitHeight="368.0" fitWidth="344.0" layoutX="363.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
