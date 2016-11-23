@@ -1,3 +1,8 @@
+/**
+ * AlbumScreenController class
+ * @author Aziz Rahman
+ * @author Amy Guinto
+ */
 package view;
 
 import java.awt.image.BufferedImage;
@@ -74,7 +79,10 @@ public class AlbumScreenController {
 
 	private Album album;
 	private User user;
-
+	/**
+	 * start(Stage) overrides method
+	 * @param stage
+	 */
 	public void start(Stage stage){
 
 		mainStage = stage;
@@ -125,7 +133,9 @@ public class AlbumScreenController {
 		mainStage.show();
 
 	}
-
+	/**
+	 * move() moves the selected photo to the specified album
+	 */
 	public void move(){
 
 		String s = newAlbum.getText().toLowerCase();
@@ -140,7 +150,10 @@ public class AlbumScreenController {
 			}
 		}
 	}
-
+	/**
+	 * back() returns to the user overview screen
+	 * @throws IOException
+	 */
 	public void back() throws IOException{
 
 		Stage stage;
@@ -154,7 +167,9 @@ public class AlbumScreenController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
-
+	/**
+	 * copy() copies the photo to the specified album
+	 */
 	public void copy(){
 
 		String s = newAlbum.getText().toLowerCase();
@@ -181,7 +196,9 @@ public class AlbumScreenController {
         stage.showAndWait();
 	}
 	 */
-
+	/**
+	 * editTag() updates the tag of the selected photo
+	 */
 	public void editTag(){
 	
 		String oldType = preT.getText().toLowerCase();
@@ -198,7 +215,9 @@ public class AlbumScreenController {
 		}
 		refresh();
 	}
-	
+	/**
+	 * addTag() adds a tag to the selected photo
+	 */
 	public void addTag(){
 		
 		String type = newType.getText().toLowerCase();
@@ -209,6 +228,9 @@ public class AlbumScreenController {
 		refresh();
 
 	}
+	/**
+	 * deleteTag() deletes the tag of the selected photo
+	 */
 	public void deleteTag(){
 		
 		String type = preT.getText().toLowerCase();
@@ -227,7 +249,9 @@ public class AlbumScreenController {
 	//	p.deleteTag(tag);
 		refresh();
 	}
-	
+	/**
+	 * refresh() updates the scene to reflect any changes
+	 */
 	public void refresh(){
 
 		items.clear();
@@ -267,7 +291,9 @@ public class AlbumScreenController {
 
 		mainStage.show();
 	}
-
+	/**
+	 * add() adds a photo to the album selected by the user through a filechooser
+	 */
 	public void add() {
 		FileChooser fileChooser = new FileChooser();
 
@@ -301,7 +327,9 @@ public class AlbumScreenController {
 
 		refresh();
 	}
-
+	/**
+	 * remove() removes the selected photo
+	 */
 	public void remove(){
 
 		int index = list.getSelectionModel().getSelectedIndex();
@@ -316,7 +344,9 @@ public class AlbumScreenController {
 			img.setImage(none);
 		}
 	}
-
+	/**
+	 * editCaption() edits the caption of the selected photo
+	 */
 	public void editCaption(){
 
 		int index = list.getSelectionModel().getSelectedIndex();
@@ -324,13 +354,18 @@ public class AlbumScreenController {
 		refresh();
 
 	}
-
+	/**
+	 * quit() terminates the application
+	 */
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();
 		stage.close();	
 	}
-
+	/**
+	 * logout() returns to the login screen
+	 * @throws IOException
+	 */
 	public void logout() throws IOException{
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).isCurrentUser())
