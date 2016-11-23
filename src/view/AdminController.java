@@ -1,3 +1,8 @@
+/**
+ * AdminController
+ * @author Aziz Rahman
+ * @author Amy Guinto
+ */
 package view;
 
 import java.io.IOException;
@@ -41,7 +46,10 @@ public class AdminController {
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
 	ObservableList<String> obsList = FXCollections.observableArrayList("admin");	
-	
+	/**
+	 * start(Stage stage) overrides method
+	 * @param stage
+	 */
 	public void start(Stage stage) {	
 		// for debugging
 		
@@ -60,7 +68,10 @@ public class AdminController {
 		listView.getSelectionModel().select(0);
 		
 	}
-	
+	/**
+	 * back() returns to login screen
+	 * @throws Exception
+	 */
 	public void back() throws Exception {
 		/*
 		Stage stage = (Stage)back.getScene().getWindow();
@@ -82,13 +93,18 @@ public class AdminController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
-	
+	/**
+	 * quit() terminates the application
+	 */
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();
 		stage.close();
 	}
-	
+	/**
+	 * add() adds a user and displays them in the listview
+	 * @throws IOException
+	 */
 	public void add() throws IOException{
 		
 		String s = field2.getText().toLowerCase();
@@ -108,7 +124,10 @@ public class AdminController {
         stage.showAndWait();
         */
 	}
-	
+	/**
+	 * delete() deletes the selected user and updates the listview
+	 * @throws IOException
+	 */
 	public void delete() throws IOException{
 		
 		for (int i = 0; i < users.size(); i++){

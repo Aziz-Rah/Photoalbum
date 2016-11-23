@@ -1,3 +1,8 @@
+/**
+ * UserController class
+ * @author Aziz Rahman
+ * @author Amy Guinto
+ */
 package view;
 
 import java.io.IOException;
@@ -36,6 +41,10 @@ public class UserController {
 	
 	ObservableList<String> list = FXCollections.observableArrayList();	
 	
+	/**
+	 * start(Stage) overrides method
+	 * @param stage
+	 */
 	public void start(Stage stage) {
 		
 		for(int i = 0; i < users.size(); i++) {
@@ -56,14 +65,19 @@ public class UserController {
 		listView.setItems(list);
 		listView.getSelectionModel().select(0);
 	}
-	
+	/**
+	 * delete() deletes the selected album
+	 */
 	public void delete(){
 		
 		int index = listView.getSelectionModel().getSelectedIndex();
 		albums.remove(index);
 		refresh();
 	}
-	
+	/**
+	 * open() opens the selected album
+	 * @throws IOException
+	 */
 	public void open() throws IOException{
 		
 		int index = listView.getSelectionModel().getSelectedIndex();
@@ -79,7 +93,9 @@ public class UserController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
-	
+	/**
+	 * rename() updates the name of the selected album to the name specified in the textfield
+	 */
 	public void rename(){
 		
 		int index = listView.getSelectionModel().getSelectedIndex();
@@ -87,7 +103,9 @@ public class UserController {
 		refresh();
 	}
 	
-	
+	/**
+	 * refresh() updates the scene to reflect any changes
+	 */
 	public void refresh(){
 		String s;
 		list.clear();
@@ -98,7 +116,10 @@ public class UserController {
 		}
 		listView.setItems(list);
 	}
-	
+	/**
+	 * search() goes to the search screen
+	 * @throws Exception
+	 */
 	public void search() throws Exception {
 		
 		Stage stage;
@@ -118,7 +139,10 @@ public class UserController {
 		stage.setScene(scene);
 		stage.show(); */
 	}
-	
+	/**
+	 * logout() returns to the login screen
+	 * @throws Exception
+	 */
 	public void logout() throws Exception {
 		// serialize
 		
@@ -133,7 +157,10 @@ public class UserController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+	/**
+	 * create() creates a new album with the name specified in the textfield
+	 * @throws IOException
+	 */
 	public void create() throws IOException{
 		
 		Album album = new Album(field.getText().toLowerCase());
@@ -142,7 +169,9 @@ public class UserController {
 		//list.add(album.getName());
 		refresh();
 	}
-	
+	/**
+	 * quit terminates the application
+	 */
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();

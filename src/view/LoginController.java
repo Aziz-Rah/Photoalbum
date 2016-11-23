@@ -1,3 +1,8 @@
+/**
+ * LoginController class
+ * @author Aziz Rahman
+ * @author Amy Guinto
+ */
 package view;
 
 import javafx.fxml.FXML;
@@ -20,7 +25,12 @@ public class LoginController {
 	@FXML Label errormsg;
 	
 	ArrayList<User> users = PhotoAlbum.getInstance().users;
-	
+	/**
+	 * login() attempts to log in to application
+	 * entering "admin" goes to admin screen
+	 * entering a valid username goes to user's album overview screen
+	 * @throws Exception
+	 */
 	public void login() throws Exception {
 		
 		String user = username.getText().toLowerCase();
@@ -65,7 +75,9 @@ public class LoginController {
 			}
 		}
 	}
-	
+	/**
+	 * quit terminates the application
+	 */
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();

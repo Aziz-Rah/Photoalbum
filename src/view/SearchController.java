@@ -1,3 +1,8 @@
+/**
+ * SearchController class
+ * @author Aziz Rahman
+ * @author Amy Guinto
+ */
 package view;
 
 import java.io.IOException;
@@ -48,7 +53,10 @@ public class SearchController {
 	ObservableList<Photo> searchedItems = FXCollections.observableArrayList();
 	Album album;
 	User user;
-
+	/**
+	 * start(Stage) overrides method
+	 * @param stage
+	 */
 	public void start(Stage stage){
 
 		mainStage = stage;
@@ -71,7 +79,9 @@ public class SearchController {
 		refresh();
 
 	}
-
+	/**
+	 * refresh() updates the scene
+	 */
 	public void refresh(){
 
 		list.setItems(searchedItems);
@@ -105,7 +115,9 @@ public class SearchController {
 
 		mainStage.show();
 	}
-
+	/**
+	 * search() searches for any photos matching the parameters specified
+	 */
 	public void search(){
 
 		if (searchedItems != null)
@@ -151,7 +163,10 @@ public class SearchController {
 		}
 		refresh();
 	}
-
+	/**
+	 * create() creates an album with the photos found through search
+	 * @throws Exception
+	 */
 	public void create() throws Exception {
 
 		String a = fieldA.getText().toLowerCase();
@@ -170,7 +185,10 @@ public class SearchController {
 			newAlbum.addPhoto(p);
 		}
 	}
-
+	/**
+	 * back() returns to User (their albums) screen
+	 * @throws IOException
+	 */
 	public void back() throws IOException{
 
 		Stage stage;
@@ -184,7 +202,10 @@ public class SearchController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
-
+	/**
+	 * logout() returns to login screen
+	 * @throws Exception
+	 */
 	public void logout() throws Exception {
 		// serialize
 
@@ -199,7 +220,9 @@ public class SearchController {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	/**
+	 * quit terminates the application
+	 */
 	public void quit() {
 		// serialize objects
 		Stage stage = (Stage)quit.getScene().getWindow();
