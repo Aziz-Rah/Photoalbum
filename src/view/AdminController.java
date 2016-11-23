@@ -102,7 +102,7 @@ public class AdminController {
 		stage.close();
 	}
 	/**
-	 * add() adds a user and displays them in the listview
+	 * add() adds a user and updates the listview
 	 * @throws IOException
 	 */
 	public void add() throws IOException{
